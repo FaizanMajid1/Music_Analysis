@@ -68,12 +68,12 @@ class AudioInstrumentClassifier:
 # Example usage
 def main():
     # Create classifier instance
-    classifier = AudioInstrumentClassifier(instrument_model_path="/content/mtg_jamendo_instrument-discogs-effnet-1.pb",
-                                           model_json_path="/content/mtg_jamendo_instrument-discogs-effnet-1.json",
-                                           embedding_model_path="/content/discogs-effnet-bs64-1.pb")
+    classifier = AudioInstrumentClassifier(instrument_model_path="models/mtg_jamendo_instrument-discogs-effnet-1.pb",
+                                           model_json_path="metadatas/mtg_jamendo_instrument-discogs-effnet-1.json",
+                                           embedding_model_path="models/discogs-effnet-bs64-1.pb")
 
     # Predict for an audio file
-    audio_path = '/content/sad-dramatic-piano-sad-alone-drama-262415.mp3'
+    audio_path = 'A Beacon of Hope.mp3'
     predictions = classifier.predict(audio_path)
     print(predictions)
 

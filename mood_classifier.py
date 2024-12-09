@@ -4,7 +4,7 @@ import numpy as np
 from essentia.standard import MonoLoader, TensorflowPredictMusiCNN
 
 class AudioMoodClassifier:
-    def __init__(self, models_dir='models_with_metadatas'):
+    def __init__(self, models_dir,metadatas_dir):
         """
         Initialize the AudioClassifier with a directory containing model files.
         
@@ -12,6 +12,7 @@ class AudioMoodClassifier:
             models_dir (str): Directory containing model .pb and .json files
         """
         self.models_dir = models_dir
+        self.metadatas_dir = metadatas_dir
         self.models = []
         self.models_names = []
         self.metadatas = []
@@ -23,7 +24,7 @@ class AudioMoodClassifier:
         """
         # Find all .pb and .json files
         pb_files = [f for f in os.listdir(self.models_dir) if f.endswith('.pb')]
-        json_files = [f for f in os.listdir(self.models_dir) if f.endswith('.json')]
+        json_files = [f for f in os.listdir(self.metadatas_dir) if f.endswith('.json')]
         
         # Sort files to ensure matching .pb and .json files
         pb_files.sort()
@@ -36,9 +37,10 @@ class AudioMoodClassifier:
         for pb_file, json_file in zip(pb_files, json_files):
             # Full paths
             pb_path = os.path.join(self.models_dir, pb_file)
-            json_path = os.path.join(self.models_dir, json_file)
+            json_path = os.path.join(self.metadatas_dir, json_file)
             
             # Load metadata
+            print(f'JSON PATH: {json_path}')
             with open(json_path, 'r') as f:
                 metadata = json.load(f)
             
@@ -101,10 +103,11 @@ class AudioMoodClassifier:
 # Example usage
 def main():
     # Create classifier instance
-    classifier = AudioMoodClassifier(models_dir='/content/')
+    classifier = AudioMoodClassifier(models_dir='models/mood_detection_models',
+                                     metadatas_dir='metadatas/mood_detection_metadatas')
     
     # Predict for an audio file
-    audio_path = '/content/we-wish-you-a-merry-christmas-happy-remix-background-intro-theme-265842 (1).mp3'
+    audio_path = 'A Beacon of Hope.mp3'
     predictions = classifier.predict(audio_path)
     print(predictions)
     

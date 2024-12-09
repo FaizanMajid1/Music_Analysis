@@ -74,20 +74,20 @@ class KeyBPMExtractor:
         }
 
 # Example usage
-# def main():
-#     # Example file path (replace with your actual path)
-#     file_path = '/path/to/your/audio/file.mp3'
+def main():
+    # Example file path (replace with your actual path)
+    file_path = 'A Beacon of Hope.mp3'
     
-#     # Create analyzer instance
-#     analyzer = AudioAnalyzer(file_path)
+    # Create analyzer instance
+    analyzer = KeyBPMExtractor(file_path)
     
-#     # Get analysis results
-#     results = analyzer.analyze()
+    # Get analysis results
+    results = analyzer.analyze()
     
-#     # Print results
-#     print("Audio Analysis Results:")
-#     for key, value in results.items():
-#         print(f"{key}: {value}")
+    # Print results
+    print("Audio Analysis Results:")
+    for key, value in results.items():
+        print(f"{key}: {value}")
 
-# if __name__ == '__main__':
-#     main()
+if __name__ == '__main__':
+    main()

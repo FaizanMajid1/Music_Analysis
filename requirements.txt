@@ -1,0 +1,10 @@
+sdl
+essentia
+essentia-tensorflow
+librosa
+numpy==1.23.5
+whisper
+spleeter
+transformers
+huggingface_hub
+python-dotenv

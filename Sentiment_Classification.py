@@ -3,10 +3,13 @@ import librosa
 from spleeter.separator import Separator
 import whisper
 import os
+from dotenv import load_dotenv
 from transformers import AutoTokenizer, AutoModelForCausalLM
 from huggingface_hub import login
 
-token = "dummy"
+load_dotenv(dotenv_path='.env')
+token = os.getenv(key="hf_token_llama2")
+
 login(token=token,add_to_git_credential=True)
 
 # Title of the app
